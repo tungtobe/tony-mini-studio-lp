@@ -1,6 +1,6 @@
 ---
-import { ArrowUpRight } from '@lucide/astro';
-import { site } from '../data/site';
+import { Mail } from '@lucide/astro';
+import { ideaMailto } from '../data/site';
 import { useTranslations, type Locale } from '../i18n/ui';
 
 interface Props {
@@ -26,13 +26,11 @@ const t = useTranslations(locale);
       <p class="mx-auto mt-4 max-w-xl text-lg text-indigo-100">{t('cta.body')}</p>
       <div class="mt-9 flex flex-wrap justify-center gap-3">
         <a
-          href={site.contactUrl}
-          target="_blank"
-          rel="noopener"
+          href={ideaMailto(locale)}
           class="btn bg-white text-[#1e1b4b] shadow-lg hover:-translate-y-0.5 hover:bg-indigo-50"
         >
+          <Mail class="size-4" aria-hidden="true" />
           {t('cta.primary')}
-          <ArrowUpRight class="size-4" aria-hidden="true" />
         </a>
         <a href="#apps" class="btn border border-white/25 text-white hover:bg-white/10">{t('cta.secondary')}</a>
       </div>

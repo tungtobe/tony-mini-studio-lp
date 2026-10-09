@@ -1,9 +1,9 @@
 ---
-import { Plus, ArrowUpRight } from '@lucide/astro';
+import { Plus, Mail } from '@lucide/astro';
 import AppCard from './AppCard.astro';
 import SectionHeading from './SectionHeading.astro';
 import { apps } from '../data/apps';
-import { site } from '../data/site';
+import { ideaMailto } from '../data/site';
 import { useTranslations, type Locale } from '../i18n/ui';
 
 interface Props {
@@ -39,13 +39,11 @@ const t = useTranslations(locale);
           <h3 class="mt-5 text-lg font-bold">{t('apps.next.title')}</h3>
           <p class="mt-2 max-w-xs text-sm text-muted-fg">{t('apps.next.body')}</p>
           <a
-            href={site.contactUrl}
-            target="_blank"
-            rel="noopener"
+            href={ideaMailto(locale)}
             class="mt-5 inline-flex min-h-11 items-center gap-1.5 text-sm font-semibold text-primary hover:underline"
           >
+            <Mail class="size-4" aria-hidden="true" />
             {t('apps.next.cta')}
-            <ArrowUpRight class="size-4" aria-hidden="true" />
           </a>
         </div>
       </li>

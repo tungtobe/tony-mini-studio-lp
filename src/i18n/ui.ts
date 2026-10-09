@@ -64,6 +64,8 @@ const en = {
   'apps.next.body':
     'Something small is brewing. Have a repetitive task you would love to see disappear?',
   'apps.next.cta': 'Suggest an idea',
+  'contact.subject': 'Mini app idea for Tony Studio',
+  'contact.body': "Hi Tony Studio,\n\nThe task I'd love to see disappear:\n\nHow often I do it:\n\nTools I use today:\n",
 
   'principles.eyebrow': 'Philosophy',
   'principles.title': 'Why mini?',
@@ -144,6 +146,8 @@ export const ui: Localized<Record<UIKey, string>> = {
     'apps.next.body':
       '新しいアプリを準備中です。なくしたい繰り返し作業はありませんか？',
     'apps.next.cta': 'アイデアを送る',
+    'contact.subject': 'Tony Studio へのミニアプリのアイデア',
+    'contact.body': 'Tony Studio さん\n\nなくしたい作業：\n\n頻度：\n\n今使っているツール：\n',
 
     'principles.eyebrow': '考え方',
     'principles.title': 'なぜ「ミニ」なのか',
@@ -219,6 +223,8 @@ export const ui: Localized<Record<UIKey, string>> = {
     'apps.next.body':
       'Một app nhỏ mới đang được ấp ủ. Bạn có việc lặp đi lặp lại nào muốn biến mất không?',
     'apps.next.cta': 'Gửi ý tưởng',
+    'contact.subject': 'Ý tưởng mini app cho Tony Studio',
+    'contact.body': 'Chào Tony Studio,\n\nViệc mình muốn loại bỏ:\n\nTần suất làm việc này:\n\nCông cụ đang dùng:\n',
 
     'principles.eyebrow': 'Triết lý',
     'principles.title': 'Vì sao lại “mini”?',
