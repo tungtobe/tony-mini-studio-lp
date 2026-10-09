@@ -29,7 +29,7 @@ export function isLocale(value: string | undefined): value is Locale {
 const en = {
   'meta.title': 'Tony Studio: tiny apps for productive work',
   'meta.description':
-    'Tony Studio builds small, focused tools that remove one tedious task from your workday. Meet Comtor-chan and Transcriber-kun.',
+    'Tony Studio builds small, focused tools that remove one tedious task from your workday. Meet Comtor-chan, Transcriber-kun and SRS.',
 
   'nav.apps': 'Apps',
   'nav.philosophy': 'Philosophy',
@@ -109,7 +109,7 @@ export const ui: Localized<Record<UIKey, string>> = {
   ja: {
     'meta.title': 'Tony Studio｜仕事を速くする小さなアプリ',
     'meta.description':
-      'Tony Studio は、仕事の「ちょっと面倒」をひとつずつ解消する小さなツールをつくるスタジオです。Comtor ちゃん、Transcriber くんを紹介します。',
+      'Tony Studio は、仕事の「ちょっと面倒」をひとつずつ解消する小さなツールをつくるスタジオです。Comtor ちゃん、Transcriber くん、SRS を紹介します。',
 
     'nav.apps': 'アプリ',
     'nav.philosophy': '考え方',
@@ -184,7 +184,7 @@ export const ui: Localized<Record<UIKey, string>> = {
   vi: {
     'meta.title': 'Tony Studio: app nhỏ cho công việc hiệu quả',
     'meta.description':
-      'Tony Studio tạo ra những công cụ nhỏ gọn, mỗi công cụ loại bỏ một việc phiền phức trong ngày làm việc của bạn. Gặp gỡ Comtor-chan và Transcriber-kun.',
+      'Tony Studio tạo ra những công cụ nhỏ gọn, mỗi công cụ loại bỏ một việc phiền phức trong ngày làm việc của bạn. Gặp gỡ Comtor-chan, Transcriber-kun và SRS.',
 
     'nav.apps': 'Ứng dụng',
     'nav.philosophy': 'Triết lý',

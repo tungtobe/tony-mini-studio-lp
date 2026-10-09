@@ -14,6 +14,7 @@ import type { Localized } from '../i18n/ui';
 
 import comtorChanIcon from '../assets/apps/comtor-chan.png';
 import transcriberKunIcon from '../assets/apps/transcriber-kun.png';
+import srsIcon from '../assets/apps/srs.png';
 
 export type AppStatus = 'live' | 'beta' | 'soon';
 
@@ -83,6 +84,30 @@ export const apps: MiniApp[] = [
       en: ['Live transcript with keyword highlights', 'Offline mode with local Whisper', 'VI · EN · JA, even mixed in one sentence'],
       ja: ['キーワードを強調するライブ文字起こし', 'ローカル Whisper でオフライン処理', '越・英・日の混在した発話にも対応'],
       vi: ['Transcript trực tiếp, highlight keyword', 'Chế độ offline với Whisper cục bộ', 'Việt · Anh · Nhật, kể cả câu trộn lẫn'],
+    },
+  },
+  {
+    id: 'srs',
+    name: { en: 'SRS', ja: 'SRS', vi: 'SRS' },
+    url: 'https://srs.relipa.vn/',
+    icon: srsIcon,
+    status: 'live',
+    platforms: ['Web'],
+    accent: '#0284c7',
+    tagline: {
+      en: 'Review specs together with your client.',
+      ja: 'クライアントと一緒に仕様書をレビュー。',
+      vi: 'Review đặc tả cùng khách hàng.',
+    },
+    description: {
+      en: 'Spec Review System: share Markdown specs and mockups with clients, collect comments right on the document, and compare revisions block by block.',
+      ja: 'Spec Review System。Markdown の仕様書やモックアップをクライアントと共有し、ドキュメント上で直接コメントを集め、リビジョン間の差分をブロック単位で比較できます。',
+      vi: 'Spec Review System: chia sẻ tài liệu đặc tả Markdown và mockup với khách hàng, nhận comment ngay trên tài liệu và so sánh các bản revision theo từng khối nội dung.',
+    },
+    features: {
+      en: ['Comment directly on Markdown specs', 'Block-level diff between revisions', 'Scoped access for each client'],
+      ja: ['Markdown 仕様書に直接コメント', 'リビジョン間のブロック単位差分', 'クライアントごとに閲覧範囲を設定'],
+      vi: ['Comment trực tiếp trên tài liệu Markdown', 'So sánh revision theo từng khối', 'Phân quyền xem theo từng khách hàng'],
     },
   },
 ];
