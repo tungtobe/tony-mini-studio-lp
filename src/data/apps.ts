@@ -89,7 +89,7 @@ export const apps: MiniApp[] = [
   {
     id: 'srs',
     name: { en: 'SRS', ja: 'SRS', vi: 'SRS' },
-    url: 'https://srs.relipa.vn/',
+    url: 'https://landing.srs.relipa.vn/',
     icon: srsIcon,
     status: 'live',
     platforms: ['Web'],
