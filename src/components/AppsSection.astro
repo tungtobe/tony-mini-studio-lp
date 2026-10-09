@@ -1,0 +1,54 @@
+---
+import { Plus, ArrowUpRight } from '@lucide/astro';
+import AppCard from './AppCard.astro';
+import SectionHeading from './SectionHeading.astro';
+import { apps } from '../data/apps';
+import { site } from '../data/site';
+import { useTranslations, type Locale } from '../i18n/ui';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+---
+
+<section id="apps" class="py-20 md:py-28">
+  <div class="container-page">
+    <SectionHeading eyebrow={t('apps.eyebrow')} title={t('apps.title')} subtitle={t('apps.subtitle')} />
+
+    <!-- auto-fill grid: works for any number of apps without layout changes -->
+    <ul class="mt-14 grid gap-6 [grid-template-columns:repeat(auto-fill,minmax(min(100%,20rem),1fr))]">
+      {
+        apps.map((app, i) => (
+          <li>
+            <AppCard app={app} locale={locale} index={i} />
+          </li>
+        ))
+      }
+      <li>
+        <div
+          class="flex h-full min-h-72 flex-col items-center justify-center rounded-3xl border-2 border-dashed border-border bg-card/40 p-8 text-center"
+          data-reveal
+          style={`--reveal-delay: ${Math.min(apps.length, 4) * 90}ms`}
+        >
+          <span class="inline-flex size-14 items-center justify-center rounded-2xl bg-primary/10 text-primary">
+            <Plus class="size-7" aria-hidden="true" />
+          </span>
+          <h3 class="mt-5 text-lg font-bold">{t('apps.next.title')}</h3>
+          <p class="mt-2 max-w-xs text-sm text-muted-fg">{t('apps.next.body')}</p>
+          <a
+            href={site.contactUrl}
+            target="_blank"
+            rel="noopener"
+            class="mt-5 inline-flex min-h-11 items-center gap-1.5 text-sm font-semibold text-primary hover:underline"
+          >
+            {t('apps.next.cta')}
+            <ArrowUpRight class="size-4" aria-hidden="true" />
+          </a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>

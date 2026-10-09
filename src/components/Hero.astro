@@ -1,0 +1,116 @@
+---
+import { Image } from 'astro:assets';
+import { ArrowRight, Plus } from '@lucide/astro';
+import { apps } from '../data/apps';
+import { locales, useTranslations, type Locale } from '../i18n/ui';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+
+// Japanese doesn't use spaces between phrases.
+const titleGap = locale === 'ja' ? '' : ' ';
+
+const shipped = apps.filter((app) => app.status !== 'soon').length;
+const stats = [
+  { value: String(shipped), label: t('hero.stat.apps') },
+  { value: String(locales.length), label: t('hero.stat.languages') },
+  { value: '1', label: t('hero.stat.focus') },
+];
+
+// Dock always shows a 3×3 grid: real apps first, then empty "slots" hinting at what's next.
+const DOCK_SIZE = 9;
+const dockApps = apps.slice(0, DOCK_SIZE - 1);
+const emptySlots = DOCK_SIZE - dockApps.length;
+---
+
+<section class="relative isolate overflow-hidden">
+  <div class="bg-aurora absolute inset-0 -z-10" aria-hidden="true"></div>
+  <div class="bg-dots absolute inset-0 -z-10 opacity-60" aria-hidden="true"></div>
+
+  <div class="container-page grid items-center gap-14 pt-14 pb-20 md:pt-20 md:pb-28 lg:grid-cols-[1.15fr_1fr]">
+    <div>
+      <p class="eyebrow" data-reveal>
+        <span class="size-1.5 rounded-full bg-accent" aria-hidden="true"></span>
+        {t('hero.eyebrow')}
+      </p>
+      <h1 class="mt-6 text-4xl leading-[1.1] font-extrabold tracking-tight sm:text-5xl lg:text-6xl">
+        {t('hero.title.lead')}{titleGap}<span class="inline-block bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+          {t('hero.title.highlight')}
+        </span>
+      </h1>
+      <p class="mt-6 max-w-xl text-lg text-muted-fg">
+        {t('hero.subtitle')}
+      </p>
+      <div class="mt-9 flex flex-wrap gap-3" data-reveal style="--reveal-delay: 240ms">
+        <a href="#apps" class="btn btn-primary">
+          {t('hero.primary')}
+          <ArrowRight class="size-4" aria-hidden="true" />
+        </a>
+        <a href="#philosophy" class="btn btn-ghost">{t('hero.secondary')}</a>
+      </div>
+
+      <dl class="mt-12 grid max-w-lg grid-cols-3 gap-4 border-t border-border pt-8" data-reveal style="--reveal-delay: 320ms">
+        {
+          stats.map((stat) => (
+            <div class="flex flex-col">
+              <dt class="mt-1 text-sm leading-snug text-muted-fg">{stat.label}</dt>
+              <dd class="order-first text-3xl font-extrabold tracking-tight text-fg">{stat.value}</dd>
+            </div>
+          ))
+        }
+      </dl>
+    </div>
+
+    <div class="relative mx-auto w-full max-w-sm lg:max-w-md" data-reveal style="--reveal-delay: 200ms">
+      <div
+        class="absolute -inset-6 -z-10 rounded-[3rem] bg-gradient-to-br from-secondary/40 via-transparent to-accent/25 blur-2xl"
+        aria-hidden="true"
+      >
+      </div>
+      <div class="card-surface rounded-[2.5rem] p-6 sm:p-8" role="img" aria-label={t('hero.visual.label')}>
+        <div class="mb-6 flex items-center justify-between" aria-hidden="true">
+          <span class="h-2 w-12 rounded-full bg-muted"></span>
+          <span class="flex gap-1.5">
+            <span class="size-2 rounded-full bg-muted"></span>
+            <span class="size-2 rounded-full bg-muted"></span>
+            <span class="size-2 rounded-full bg-accent"></span>
+          </span>
+        </div>
+        <ul class="grid grid-cols-3 gap-4 sm:gap-5" aria-hidden="true">
+          {
+            dockApps.map((app, i) => (
+              <li class="flex flex-col items-center gap-2">
+                <div
+                  class="animate-float aspect-square w-full overflow-hidden rounded-[1.4rem] shadow-lg"
+                  style={`--float-delay: ${i * 0.8}s; box-shadow: 0 12px 28px -12px ${app.accent}`}
+                >
+                  <Image src={app.icon} alt="" width={160} height={160} class="size-full object-cover" loading="eager" />
+                </div>
+                <span class="max-w-full truncate text-[0.7rem] font-semibold text-muted-fg">{app.name[locale]}</span>
+              </li>
+            ))
+          }
+          {
+            Array.from({ length: emptySlots }, (_, i) => (
+              <li class="flex flex-col items-center gap-2">
+                <div
+                  class:list={[
+                    'flex aspect-square w-full items-center justify-center rounded-[1.4rem] border-2 border-dashed',
+                    i === 0 ? 'border-primary/40 bg-primary/5 text-primary' : 'border-border bg-muted/40',
+                  ]}
+                >
+                  {i === 0 && <Plus class="size-6" />}
+                </div>
+                <span class="h-[1.05rem]" />
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

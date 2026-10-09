@@ -1,0 +1,97 @@
+---
+import { Image } from 'astro:assets';
+import { ArrowUpRight, Check } from '@lucide/astro';
+import type { MiniApp } from '../data/apps';
+import { useTranslations, type Locale } from '../i18n/ui';
+
+interface Props {
+  app: MiniApp;
+  locale: Locale;
+  index?: number;
+}
+
+const { app, locale, index = 0 } = Astro.props;
+const t = useTranslations(locale);
+const name = app.name[locale];
+const isAvailable = app.status !== 'soon';
+
+const statusStyles = {
+  live: 'bg-accent/12 text-accent',
+  beta: 'bg-primary/12 text-primary',
+  soon: 'bg-muted text-muted-fg',
+} as const;
+---
+
+<article
+  class="card-surface group relative flex h-full flex-col overflow-hidden p-7 transition-[transform,box-shadow,border-color] duration-300 ease-out hover:-translate-y-1 hover:border-[color-mix(in_oklab,var(--app-accent)_45%,var(--border))]"
+  style={`--app-accent: ${app.accent}; --reveal-delay: ${Math.min(index, 4) * 90}ms`}
+  data-reveal
+>
+  <div
+    class="pointer-events-none absolute -top-24 -right-24 size-56 rounded-full opacity-20 blur-3xl transition-opacity duration-300 group-hover:opacity-35"
+    style="background: var(--app-accent)"
+    aria-hidden="true"
+  >
+  </div>
+
+  <div class="flex items-start gap-4">
+    <Image
+      src={app.icon}
+      alt=""
+      width={128}
+      height={128}
+      class="size-16 shrink-0 rounded-2xl shadow-md"
+      style={`box-shadow: 0 10px 24px -12px ${app.accent}`}
+    />
+    <div class="min-w-0 pt-1">
+      <h3 class="text-xl font-bold tracking-tight">{name}</h3>
+      <span class:list={['mt-1.5 inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-xs font-semibold', statusStyles[app.status]]}>
+        <span class="size-1.5 rounded-full bg-current" aria-hidden="true"></span>
+        {t(`apps.status.${app.status}`)}
+      </span>
+    </div>
+  </div>
+
+  <p class="mt-6 text-base font-semibold text-fg">{app.tagline[locale]}</p>
+  <p class="mt-2 text-sm text-muted-fg">{app.description[locale]}</p>
+
+  <ul class="mt-5 space-y-2.5 text-sm">
+    {
+      app.features[locale].slice(0, 3).map((feature) => (
+        <li class="flex items-start gap-2.5">
+          <span class="mt-0.5 inline-flex size-5 shrink-0 items-center justify-center rounded-full bg-accent/12 text-accent">
+            <Check class="size-3.5" stroke-width={3} aria-hidden="true" />
+          </span>
+          <span>{feature}</span>
+        </li>
+      ))
+    }
+  </ul>
+
+  <div class="mt-auto pt-7">
+    <ul class="flex flex-wrap gap-1.5" aria-label={t('apps.platforms')}>
+      {app.platforms.map((p) => <li class="rounded-md border border-border px-2 py-0.5 text-xs font-medium text-muted-fg">{p}</li>)}
+    </ul>
+    {
+      isAvailable && (
+        <a
+          href={app.url}
+          target="_blank"
+          rel="noopener"
+          class="mt-5 flex min-h-11 items-center justify-between border-t border-border pt-4 text-sm font-semibold text-primary after:absolute after:inset-0 after:rounded-3xl after:content-['']"
+        >
+          <span>
+            {t('apps.visit')}
+            <span class="sr-only">
+              : {name} {t('apps.opensNewTab')}
+            </span>
+          </span>
+          <ArrowUpRight
+            class="size-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+            aria-hidden="true"
+          />
+        </a>
+      )
+    }
+  </div>
+</article>

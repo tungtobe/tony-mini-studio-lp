@@ -1,0 +1,82 @@
+---
+import Logo from './Logo.astro';
+import { htmlLang, languageNames, localePath, locales, useTranslations, type Locale } from '../i18n/ui';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+const links = [
+  { hash: 'apps', label: t('nav.apps') },
+  { hash: 'philosophy', label: t('nav.philosophy') },
+  { hash: 'process', label: t('nav.process') },
+];
+---
+
+<header class="sticky top-0 z-50 border-b border-transparent transition-colors duration-200" data-header>
+  <div class="container-page flex h-16 items-center justify-between gap-4">
+    <a href={localePath(locale)} class="flex items-center gap-2.5 rounded-xl font-bold tracking-tight">
+      <Logo />
+      <span class="text-base sm:text-lg">Tony <span class="text-primary">Mini App</span></span>
+    </a>
+
+    <nav aria-label="Primary" class="hidden md:block">
+      <ul class="flex items-center gap-1 text-sm font-medium text-muted-fg">
+        {
+          links.map((link) => (
+            <li>
+              <a href={`#${link.hash}`} class="rounded-full px-3 py-2 transition-colors duration-200 hover:text-fg">
+                {link.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <div class="flex items-center gap-2">
+      <nav aria-label={t('nav.language')}>
+        <ul class="flex items-center rounded-full border border-border bg-card/70 p-1 text-xs font-semibold">
+          {
+            locales.map((l) => (
+              <li>
+                <a
+                  href={localePath(l)}
+                  hreflang={htmlLang[l]}
+                  lang={htmlLang[l]}
+                  aria-label={languageNames[l]}
+                  title={languageNames[l]}
+                  aria-current={l === locale ? 'page' : undefined}
+                  class:list={[
+                    'inline-flex min-h-9 min-w-9 items-center justify-center rounded-full px-2.5 uppercase transition-colors duration-200',
+                    l === locale ? 'bg-primary text-primary-fg' : 'text-muted-fg hover:text-fg',
+                  ]}
+                >
+                  {l}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+      <a href="#apps" class="btn btn-primary hidden !min-h-10 !px-4 !py-2 sm:inline-flex">{t('nav.cta')}</a>
+    </div>
+  </div>
+</header>
+
+<script>
+  const header = document.querySelector<HTMLElement>('[data-header]');
+  if (header) {
+    const update = () => {
+      const scrolled = window.scrollY > 8;
+      header.classList.toggle('bg-bg/80', scrolled);
+      header.classList.toggle('backdrop-blur-lg', scrolled);
+      header.classList.toggle('border-border', scrolled);
+      header.classList.toggle('border-transparent', !scrolled);
+    };
+    update();
+    window.addEventListener('scroll', update, { passive: true });
+  }
+</script>

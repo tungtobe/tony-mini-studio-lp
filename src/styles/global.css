@@ -1,0 +1,194 @@
+@import "tailwindcss";
+
+/*
+ * Design tokens (ui-ux-pro-max: "Tony Mini App" design system).
+ * Indigo primary + emerald accent, Plus Jakarta Sans, spacious density.
+ * Values were darkened from the generated palette to hit WCAG AA (≥ 4.5:1) for text on buttons.
+ */
+:root {
+  --bg: #f7f6ff;
+  --fg: #1e1b4b;
+  --card: #ffffff;
+  --card-fg: #1e1b4b;
+  --muted: #eef0fa;
+  --muted-fg: #4b5563;
+  --border: #e0e7ff;
+  --primary: #4f46e5;
+  --primary-fg: #ffffff;
+  --secondary: #818cf8;
+  --accent: #047857;
+  --accent-fg: #ffffff;
+  --ring: #6366f1;
+  --shadow: 30 27 75;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0b0a1f;
+    --fg: #eef0ff;
+    --card: #15142e;
+    --card-fg: #eef0ff;
+    --muted: #1d1c3a;
+    --muted-fg: #a9adcc;
+    --border: #2a2850;
+    --primary: #818cf8;
+    --primary-fg: #0b0a1f;
+    --secondary: #a5b4fc;
+    --accent: #34d399;
+    --accent-fg: #052e1f;
+    --ring: #a5b4fc;
+    --shadow: 0 0 0;
+    color-scheme: dark;
+  }
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-fg: var(--fg);
+  --color-card: var(--card);
+  --color-card-fg: var(--card-fg);
+  --color-muted: var(--muted);
+  --color-muted-fg: var(--muted-fg);
+  --color-border: var(--border);
+  --color-primary: var(--primary);
+  --color-primary-fg: var(--primary-fg);
+  --color-secondary: var(--secondary);
+  --color-accent: var(--accent);
+  --color-accent-fg: var(--accent-fg);
+  --color-ring: var(--ring);
+  --font-sans: "Plus Jakarta Sans", "Noto Sans JP", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-bg text-fg font-sans antialiased;
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  :lang(ja) body {
+    line-height: 1.8;
+    word-break: auto-phrase;
+  }
+
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  a,
+  button,
+  summary {
+    cursor: pointer;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 3px;
+    border-radius: 0.5rem;
+  }
+}
+
+@layer components {
+  .container-page {
+    @apply mx-auto w-full max-w-6xl px-5 sm:px-8;
+  }
+
+  .eyebrow {
+    @apply inline-flex items-center gap-2 rounded-full border border-border bg-card/70 px-3 py-1 text-xs font-semibold tracking-wide text-primary uppercase;
+  }
+
+  .btn {
+    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition-[background-color,box-shadow,transform,color] duration-200 ease-out;
+  }
+
+  .btn-primary {
+    @apply bg-primary text-primary-fg shadow-lg shadow-primary/25 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-primary/30;
+  }
+
+  .btn-ghost {
+    @apply border border-border bg-card/60 text-fg hover:border-primary/40 hover:bg-card;
+  }
+
+  .card-surface {
+    @apply rounded-3xl border border-border bg-card text-card-fg;
+    box-shadow: 0 1px 2px rgb(var(--shadow) / 0.04), 0 8px 24px -12px rgb(var(--shadow) / 0.12);
+  }
+}
+
+/* Decorative page background */
+.bg-aurora {
+  background:
+    radial-gradient(40rem 28rem at 85% -5%, color-mix(in oklab, var(--secondary) 28%, transparent), transparent 70%),
+    radial-gradient(32rem 24rem at -5% 20%, color-mix(in oklab, var(--accent) 14%, transparent), transparent 70%);
+}
+
+.bg-dots {
+  background-image: radial-gradient(color-mix(in oklab, var(--fg) 12%, transparent) 1px, transparent 1px);
+  background-size: 22px 22px;
+  mask-image: linear-gradient(to bottom, black 0%, transparent 80%);
+}
+
+/* Scroll reveal (progressive enhancement: only hidden when JS is available) */
+html.js [data-reveal] {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity 600ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 600ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+html.js [data-reveal].is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+  animation-delay: var(--float-delay, 0s);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  html.js [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .animate-float {
+    animation: none;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+  }
+}
