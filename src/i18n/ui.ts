@@ -27,9 +27,9 @@ export function isLocale(value: string | undefined): value is Locale {
 }
 
 const en = {
-  'meta.title': 'Tony Mini App Studio: tiny apps for productive work',
+  'meta.title': 'Tony Studio: tiny apps for productive work',
   'meta.description':
-    'Tony Mini App Studio builds small, focused tools that remove one tedious task from your workday. Meet Comtor-chan and Transcriber-kun.',
+    'Tony Studio builds small, focused tools that remove one tedious task from your workday. Meet Comtor-chan and Transcriber-kun.',
 
   'nav.apps': 'Apps',
   'nav.philosophy': 'Philosophy',
@@ -42,13 +42,13 @@ const en = {
   'hero.title.lead': 'Tiny apps that give you',
   'hero.title.highlight': 'hours back.',
   'hero.subtitle':
-    'Tony Mini App is a studio that builds small, focused tools. Each one removes one tedious task from your workday, and does that one job really well.',
+    'Tony Studio builds small, focused tools we call mini apps. Each one removes one tedious task from your workday, and does that one job really well.',
   'hero.primary': 'Explore the apps',
   'hero.secondary': 'Why mini?',
   'hero.stat.apps': 'mini apps shipped',
   'hero.stat.languages': 'languages supported',
   'hero.stat.focus': 'job per app, done well',
-  'hero.visual.label': 'A home screen of Tony mini apps',
+  'hero.visual.label': 'A home screen of Tony Studio mini apps',
 
   'apps.eyebrow': 'The collection',
   'apps.title': 'Meet the mini apps',
@@ -107,9 +107,9 @@ export type UIKey = keyof typeof en;
 export const ui: Localized<Record<UIKey, string>> = {
   en,
   ja: {
-    'meta.title': 'Tony Mini App Studio｜仕事を速くする小さなアプリ',
+    'meta.title': 'Tony Studio｜仕事を速くする小さなアプリ',
     'meta.description':
-      'Tony Mini App Studio は、仕事の「ちょっと面倒」をひとつずつ解消する小さなツールをつくるスタジオです。Comtor ちゃん、Transcriber くんを紹介します。',
+      'Tony Studio は、仕事の「ちょっと面倒」をひとつずつ解消する小さなツールをつくるスタジオです。Comtor ちゃん、Transcriber くんを紹介します。',
 
     'nav.apps': 'アプリ',
     'nav.philosophy': '考え方',
@@ -122,13 +122,13 @@ export const ui: Localized<Record<UIKey, string>> = {
     'hero.title.lead': '小さなアプリで、',
     'hero.title.highlight': '時間を取り戻す。',
     'hero.subtitle':
-      'Tony Mini App は、小さくて頼れるツールをつくるスタジオです。ひとつのアプリが、仕事の中の面倒な作業をひとつだけ、確実に片づけます。',
+      'Tony Studio は、小さくて頼れるミニアプリをつくるスタジオです。ひとつのアプリが、仕事の中の面倒な作業をひとつだけ、確実に片づけます。',
     'hero.primary': 'アプリを見る',
     'hero.secondary': 'なぜ「ミニ」？',
     'hero.stat.apps': '個のミニアプリを公開中',
     'hero.stat.languages': '言語に対応',
     'hero.stat.focus': 'アプリにつき、ひとつの役割',
-    'hero.visual.label': 'Tony ミニアプリが並ぶホーム画面',
+    'hero.visual.label': 'Tony Studio のミニアプリが並ぶホーム画面',
 
     'apps.eyebrow': 'コレクション',
     'apps.title': 'ミニアプリ一覧',
@@ -182,9 +182,9 @@ export const ui: Localized<Record<UIKey, string>> = {
     'footer.rights': 'All rights reserved.',
   },
   vi: {
-    'meta.title': 'Tony Mini App Studio: app nhỏ cho công việc hiệu quả',
+    'meta.title': 'Tony Studio: app nhỏ cho công việc hiệu quả',
     'meta.description':
-      'Tony Mini App Studio tạo ra những công cụ nhỏ gọn, mỗi công cụ loại bỏ một việc phiền phức trong ngày làm việc của bạn. Gặp gỡ Comtor-chan và Transcriber-kun.',
+      'Tony Studio tạo ra những công cụ nhỏ gọn, mỗi công cụ loại bỏ một việc phiền phức trong ngày làm việc của bạn. Gặp gỡ Comtor-chan và Transcriber-kun.',
 
     'nav.apps': 'Ứng dụng',
     'nav.philosophy': 'Triết lý',
@@ -197,13 +197,13 @@ export const ui: Localized<Record<UIKey, string>> = {
     'hero.title.lead': 'Những app nhỏ giúp bạn',
     'hero.title.highlight': 'lấy lại hàng giờ.',
     'hero.subtitle':
-      'Tony Mini App là studio tạo ra những công cụ nhỏ gọn, tập trung. Mỗi app loại bỏ một việc phiền phức trong ngày làm việc và làm thật tốt đúng việc đó.',
+      'Tony Studio là studio tạo ra những mini app nhỏ gọn, tập trung. Mỗi app loại bỏ một việc phiền phức trong ngày làm việc và làm thật tốt đúng việc đó.',
     'hero.primary': 'Khám phá ứng dụng',
     'hero.secondary': 'Vì sao lại “mini”?',
     'hero.stat.apps': 'mini app đã ra mắt',
     'hero.stat.languages': 'ngôn ngữ được hỗ trợ',
     'hero.stat.focus': 'việc cho mỗi app, làm thật tốt',
-    'hero.visual.label': 'Màn hình chính với các mini app của Tony',
+    'hero.visual.label': 'Màn hình chính với các mini app của Tony Studio',
 
     'apps.eyebrow': 'Bộ sưu tập',
     'apps.title': 'Các mini app',

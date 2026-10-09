@@ -1,6 +1,6 @@
-# Tony Mini App Studio: Landing Page
+# Tony Studio: Landing Page
 
-Landing page for **Tony Mini App**, a studio that builds tiny productivity apps.
+Landing page for **Tony Studio**, a studio whose theme is tiny productivity apps ("mini apps").
 Built with [Astro](https://astro.build) + Tailwind CSS v4, fully static, deployed on Vercel.
 
 - 🌐 i18n: English (default, `/`), Japanese (`/ja/`), Vietnamese (`/vi/`)
